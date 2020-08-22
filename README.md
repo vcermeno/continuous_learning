@@ -3,7 +3,7 @@
 
 ## graphql Practice
 - Created graphQl enpoints using books and authors
- ![Alt text](/images/graphqlPractice)
+ ![Alt text](/images/graphqlPractice.png)
 
  ## TS_server
  - Node.js/Express.js/Typescript Server
