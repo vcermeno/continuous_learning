@@ -15,15 +15,17 @@ provider:
   memorySize: 256
 # set custom options for development, if no stage provided
   stage: ${opt:stage, 'dev'}
+
+  region: us-west-1
   
 # define lambda function with handler and event trigger
 functions:
   hello:
-    handler: src/handlers/hello.handler
+    handler: src/handlers/createAuction.handler
     events:
       - http:
-          method: GET
-          path: /hello
+          method: POST
+          path: /auction
 
 custom:
   bundle:
