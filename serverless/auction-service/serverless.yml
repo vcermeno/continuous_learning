@@ -20,7 +20,7 @@ provider:
   
 # define lambda function with handler and event trigger
 functions:
-  hello:
+  createAuction:
     handler: src/handlers/createAuction.handler
     events:
       - http:
