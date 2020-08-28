@@ -1,0 +1,30 @@
+service:
+  name: auction-service
+
+plugins:
+# allows you to bundle your application using webpack and ECMA script 6+
+  - serverless-bundle
+# allows you to interpolate AWS parameters(region, accountID)
+  - serverless-pseudo-parameters
+
+# about the account provider
+provider:
+  name: aws
+  runtime: nodejs12.x
+# how much memory our lambda function will get when executed (set globally instead of per function)
+  memorySize: 256
+# set custom options for development, if no stage provided
+  stage: ${opt:stage, 'dev'}
+  
+# define lambda function with handler and event trigger
+functions:
+  hello:
+    handler: src/handlers/hello.handler
+    events:
+      - http:
+          method: GET
+          path: /hello
+
+custom:
+  bundle:
+    linting: true
