@@ -9,20 +9,20 @@ import createError from 'http-errors';
 const dynamoDB = new AWS.DynamoDB.DocumentClient;
 
 async function createAuction(event, context) {
-  const { title } = event.body;
+  const { title } = JSON.parse(event.body);
 
   const auction = {
     id: uuid(),
     title,
     status: 'open',
-    createdAt: new Date().toISOString,
+    createdAt: new Date().toISOString(),
   };
-  try{
+  try {
     await dynamoDB.put({
       TableName: process.env.AUCTIONS_TABLE_NAME,
       Item: auction,
     }).promise();
-  } catch(error){
+  } catch(error) {
     console.error(error);
     throw new createError.InternalServerError(error);
   }
