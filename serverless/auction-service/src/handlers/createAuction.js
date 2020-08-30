@@ -6,13 +6,16 @@ import commonMiddleware from '../../lib/commonMiddleware';
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
 async function createAuction(event, context) {
-  const { title } = JSON.parse(event.body);
+  const { title } = event.body;
 
   const auction = {
     id: uuid(),
     title,
     status: 'open',
     createdAt: new Date().toISOString(),
+    highestBid: {
+      amount: 0,
+    },
   };
   try {
     await dynamoDB.put({
